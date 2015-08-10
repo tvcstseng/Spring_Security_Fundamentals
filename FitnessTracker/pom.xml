@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FitnessTracker Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<spring.version>4.0.9.RELEASE</spring.version>
 		<spring_security.version>3.2.8.RELEASE</spring_security.version>
@@ -25,7 +25,7 @@
 			<artifactId>apacheds-all</artifactId>
 			<version>1.5.5</version>
 		</dependency>
-		
+
 		<!-- MySQL dependencies -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -103,7 +103,7 @@
 			<artifactId>spring-security-ldap</artifactId>
 			<version>${spring_security.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
@@ -119,16 +119,62 @@
 	</dependencies>
 	<build>
 		<finalName>FitnessTracker</finalName>
-		 <plugins>
-        <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-        </configuration>
-    </plugin>
-    </plugins>
+		<plugins>
+			<!-- Define the Source and target compiler JRE versions -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- The Packaging into JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<useDefaultManifestFile>true</useDefaultManifestFile>
+				</configuration>
+			</plugin>
+
+			<!-- Source plugin -->
+			<!-- Mostly done in the -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
 	</build>
 </project>
